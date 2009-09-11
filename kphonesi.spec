@@ -3,7 +3,7 @@
 Summary:	KPhoneSI - SIP user agent
 Name:		kphonesi
 Version:	1.2
-Release:	%{mkrel 1}
+Release:	%{mkrel 2}
 # All kphone files say LGPLv2+ in their headers, but the app also uses
 # trayicon.cpp and trayicon.h that are GPLv2+, and the COPYING file is
 # the GPL, not the LGPL - AdamW 2008/12
