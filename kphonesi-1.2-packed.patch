@@ -1,0 +1,11 @@
+--- kphoneSI/kaudio/rtpdataheader.h	2007-08-06 05:07:15.000000000 -0700
++++ kphoneSI/kaudio/rtpdataheader.h.new	2008-12-09 23:30:49.000000000 -0800
+@@ -14,7 +14,7 @@
+ //#define RTP_LITTLE_ENDIAN 1
+ 
+ //  RTP data header
+-typedef __attribute__ ((__packed__)) struct {
++typedef struct __attribute__ ((__packed__)) {
+ #ifdef ENDIAN
+ 	unsigned int version:2;         // protocol version
+ 	unsigned int p:1;               // padding flag

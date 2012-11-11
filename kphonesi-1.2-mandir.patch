@@ -1,0 +1,11 @@
+--- kphoneSI/kphone/Makefile.in	2008-01-14 13:59:14.000000000 -0800
++++ kphoneSI/kphone/Makefile.in.new2	2008-12-10 00:04:41.000000000 -0800
+@@ -6,7 +6,7 @@
+ exec_prefix=@exec_prefix@
+ SHARE_DIR=@datadir@/KPhoneSI
+ BIN_DIR=@bindir@
+-MAN_DIR=${exec_prefix}/man/man1
++MAN_DIR=@datadir@/man/man1
+ 
+ ifeq (@ENABLE_LIPO@,yes)
+ 

@@ -1,0 +1,11 @@
+--- kphoneSI/dissipate2/sippublish.cpp	2008-09-06 05:42:48.000000000 -0700
++++ kphoneSI/dissipate2/sippublish.cpp.new	2008-12-09 23:46:48.000000000 -0800
+@@ -30,6 +30,8 @@
+ #include "sippublish.h"
+ #include "sipuser.h"
+ #include <iostream>
++#include <algorithm>
++
+ using namespace std;
+ 
+ SipPublish::SipPublish( SipUser *user, const QString serveruri, int PubExp, int actT )

@@ -1,0 +1,105 @@
+--- kphoneSI/kphone/Makefile.in	2008-01-14 13:59:14.000000000 -0800
++++ kphoneSI/kphone/Makefile.in.new	2008-12-09 23:13:29.000000000 -0800
+@@ -80,14 +80,14 @@
+ all:	kpsi
+ 
+ install:	all
+-	install --mode=0755 --directory $(BIN_DIR)
+-	install --strip kpsi $(BIN_DIR)
+-	install -D --mode=0644 kphone.1 $(MAN_DIR)/kphone.1
+-	install -D --mode=0644 kpsi.1 $(MAN_DIR)/kpsi.1
++	install --mode=0755 --directory $(DESTDIR)$(BIN_DIR)
++	install --strip kpsi $(DESTDIR)$(BIN_DIR)
++	install -D --mode=0644 kphone.1 $(DESTDIR)$(MAN_DIR)/kphone.1
++	install -D --mode=0644 kpsi.1 $(DESTDIR)$(MAN_DIR)/kpsi.1
+ uninstall:
+-	rm -f $(BIN_DIR)/kphone 
+-	rm -f $(MAN_DIR)/kphone.1 
+-	rm -f $(MAN_DIR)/kpsi.1
++	rm -f $(DESTDIR)$(BIN_DIR)/kphone 
++	rm -f $(DESTDIR)$(MAN_DIR)/kphone.1 
++	rm -f $(DESTDIR)$(MAN_DIR)/kpsi.1
+ clean:
+ 	rm -f kpsi *.o *.a *~ *.moc.cpp *.bak core
+ 
+--- kphoneSI/po/Makefile.in	2007-02-06 12:20:23.000000000 -0800
++++ kphoneSI/po/Makefile.in.new	2008-12-09 23:16:49.000000000 -0800
+@@ -18,13 +18,13 @@
+ install: $(QM)
+ 
+ 
+-	install --mode=0755 --directory $(PO_DIR)
++	install --mode=0755 --directory $(DESTDIR)$(PO_DIR)
+ 	for T in *.qm; do \
+-		install --mode=0644 $$T $(PO_DIR); \
++		install --mode=0644 $$T $(DESTDIR)$(PO_DIR); \
+ 	done
+ 
+ uninstall:
+-	rm -rf $(PO_DIR)
++	rm -rf $(DESTDIR)$(PO_DIR)
+ 
+ clean:
+ 	-rm -f *~ *.qm
+--- kphoneSI/icons/Makefile.in	2007-02-06 12:20:18.000000000 -0800
++++ kphoneSI/icons/Makefile.in.new	2008-12-09 23:52:26.000000000 -0800
+@@ -4,11 +4,11 @@
+ ICON_DIR=$(SHAREDIR)/icons
+ 
+ install:
+-	install --mode=0755 --directory $(ICON_DIR)
++	install --mode=0755 --directory $(DESTDIR)$(ICON_DIR)
+ 	for T in *.png; do \
+-		install --mode=0644 $$T $(ICON_DIR); \
++		install --mode=0644 $$T $(DESTDIR)$(ICON_DIR); \
+ 	done
+ 
+ uninstall:
+-	rm -rf $(ICON_DIR)
+-	rm -rf $(SHAREDIR)
++	rm -rf $(DESTDIR)$(ICON_DIR)
++	rm -rf $(DESTDIR)$(SHAREDIR)
+--- kphoneSI/kdial/Makefile.in	2006-06-22 11:32:11.000000000 -0700
++++ kphoneSI/kdial/Makefile.in.new	2008-12-09 23:56:13.000000000 -0800
+@@ -16,11 +16,11 @@
+ all:	kpsidial
+ 
+ install:	all
+-	install --mode=0755 --directory $(BIN_DIR)
+-	install --strip kpsidial $(BIN_DIR)
++	install --mode=0755 --directory $(DESTDIR)$(BIN_DIR)
++	install --strip kpsidial $(DESTDIR)$(BIN_DIR)
+ 
+ uninstall:
+-	rm -f $(BIN_DIR)/kpsidial
++	rm -f $(DESTDIR)$(BIN_DIR)/kpsidial
+ 
+ clean:
+ 	rm -f kpsidial *.o  *~  *.bak core
+--- kphoneSI/ringing/Makefile.in	2007-02-06 12:20:23.000000000 -0800
++++ kphoneSI/ringing/Makefile.in.new	2008-12-09 23:57:28.000000000 -0800
+@@ -16,16 +16,16 @@
+ all:	kphonering
+ 
+ install:	all
+-	install --mode=0755 --directory $(BIN_DIR)
+-	install --strip kphonering $(BIN_DIR)
+-	install kphoneringsh $(BIN_DIR)
+-	install --mode=0755 --directory $(SHARE_DIR)
+-	install --mode=0644 ring.wav $(SHARE_DIR)
++	install --mode=0755 --directory $(DESTDIR)$(BIN_DIR)
++	install --strip kphonering $(DESTDIR)$(BIN_DIR)
++	install kphoneringsh $(DESTDIR)$(BIN_DIR)
++	install --mode=0755 --directory $(DESTDIR)$(SHARE_DIR)
++	install --mode=0644 ring.wav $(DESTDIR)$(SHARE_DIR)
+ 
+ uninstall:
+-	rm -f $(BIN_DIR)/kphonering
+-	rm -f $(BIN_DIR)/kphoneringsh
+-	rm -r $(SHARE_DIR)
++	rm -f $(DESTDIR)$(BIN_DIR)/kphonering
++	rm -f $(DESTDIR)$(BIN_DIR)/kphoneringsh
++	rm -r $(DESTDIR)$(SHARE_DIR)
+ 
+ clean:
+ 	rm -f kphonering *.o  *~  *.bak core

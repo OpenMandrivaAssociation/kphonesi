@@ -1,0 +1,60 @@
+--- kphoneSI/configure.in	2008-01-06 06:22:56.000000000 -0800
++++ kphoneSI/configure.in.new	2008-12-10 00:25:08.000000000 -0800
+@@ -13,6 +13,39 @@
+ AC_PROG_INSTALL
+ AC_PROG_MAKE_SET
+ 
++dnl Check for lib64 dir name
++AC_DEFUN([KPHONE_CHECK_LIBNAME], [
++  AC_REQUIRE([AC_CANONICAL_HOST])dnl
++  AC_REQUIRE([AC_CANONICAL_BUILD])dnl
++  AC_MSG_CHECKING([libdir name])
++  case $host in
++  *-*-linux*)
++    # Test if the compiler is 64bit
++    echo 'int i;' > conftest.$ac_ext
++    kphone_cv_cc_64bit_output=no
++    if AC_TRY_EVAL(ac_compile); then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *"ELF 64"*)
++        kphone_cv_cc_64bit_output=yes
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
++  case $host_cpu:$kphone_cv_cc_64bit_output in
++  powerpc64:yes | s390x:yes | sparc64:yes | x86_64:yes)
++    LIB="lib64"
++    ;;
++  *:*)
++    LIB="lib"
++    ;;
++  esac
++  AC_MSG_RESULT([$LIB])
++])
++KPHONE_CHECK_LIBNAME
++
+ dnl Check for Qt preprocessor 'moc'
+ AC_PATH_PROG(MOC, moc, /usr/local/bin/moc, $QTDIR/bin:$PATH:/usr/bin:/usr/X11R6/bin:/usr/lib/qt/bin::/usr/lib/qt3/bin:/usr/local/qt/bin:/usr/share/qt3/bin)
+ 
+@@ -47,7 +80,7 @@
+ dnl Look for Qt library files
+ AC_CACHE_CHECK(location of Qt library,
+   ac_cv_qt_lib, [
+-  for T in $QTDIR/lib $QTDIR /usr/lib/qt3 /usr/lib/qt3/lib64 /usr/lib/qt-3.1/lib /usr/lib/qt3/lib /usr/local/lib/qt /usr/share/qt3/lib /usr/lib; do
++  for T in $QTDIR/lib $QTDIR /usr/lib/qt3 /usr/lib/qt3/$LIB /usr/lib/qt-3.1/lib /usr/lib/qt3/lib /usr/local/lib/qt /usr/share/qt3/lib /usr/$LIB; do
+      if test "x$ac_cv_qt_lib" = "x"; then
+        if test -f $T/libqt-mt.so -o -f $T/libqt-mt.a; then
+          ac_cv_qt_lib=$T;
+@@ -187,7 +220,7 @@
+ 
+ 
+ CFLAGS="-I$ac_cv_qt_inc -Wall $CFLAGS"
+-LIBS="-L$ac_cv_qt_lib -l$ac_cv_qt_libname -L/usr/local/lib -L/usr/X11R6/lib64 -L/usr/X11R6/lib"
++LIBS="-L$ac_cv_qt_lib -l$ac_cv_qt_libname"
+ 
+ dnl Check for X libraries.
+ AC_LANG_C
