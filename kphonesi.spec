@@ -9,7 +9,7 @@ Release:	%{mkrel 2}
 # the GPL, not the LGPL - AdamW 2008/12
 License:	GPLv2+
 Group:		Communications
-URL:		http://sourceforge.net/projects/kphone/
+URL:		https://sourceforge.net/projects/kphone/
 BuildRequires:	qt3-devel
 BuildRequires:	openssl-devel
 BuildRequires:	libx11-devel
