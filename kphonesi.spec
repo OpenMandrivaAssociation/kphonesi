@@ -10,6 +10,11 @@ Release:	%{mkrel 2}
 License:	GPLv2+
 Group:		Communications
 URL:		https://sourceforge.net/projects/kphone/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	qt3-devel
 BuildRequires:	openssl-devel
 BuildRequires:	libx11-devel
